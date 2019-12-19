@@ -1,9 +1,13 @@
-FROM node:6.11.5
+FROM python:2.7
 
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install
-COPY . .
+WORKDIR /app
 
-CMD [ "npm", "start" ]
+ADD requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+
+ADD app.py /app/app.py
+
+EXPOSE 80
+
+CMD ["python", "app.py"]
 
