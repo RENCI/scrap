@@ -1,5 +1,12 @@
 sut:
   build: .
   dockerfile: Dockerfile.test
-  command: run_tests.sh
-  
+  links:
+    - web
+web:
+  build: .
+  dockerfile: Dockerfile
+  links:
+    - redis
+redis:
+  image: redis
